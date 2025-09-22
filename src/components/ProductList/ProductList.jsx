@@ -5,7 +5,6 @@ import "./ProductList.css";
 
 export function ProductList() {
   const [products, setProducts] = useState([]);
-  console.log(products);
 
   useEffect(() => {
     getProducts().then((data) => {

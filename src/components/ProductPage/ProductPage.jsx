@@ -69,41 +69,42 @@ export function ProductPage() {
 
       <div className="product-page__right-block">
         <h2 className="product-page__title">{product.name}</h2>
+
         <p className="product-page__descr">{selectedColor.description}</p>
 
-        <div>
-          <h3 className="product-page__subtitle">Доступные цвета:</h3>
-          <ul className="product-page__colors">
-            {product.colors.map((color, index) => (
-              <li
-                key={color.id}
-                className="product-page__color-item"
-                onClick={() => handleColorChange(index)}
-              >
-                <button className="product-page__color-button">
-                  {color.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <h3 className="product-page__subtitle">Доступные цвета:</h3>
 
-        <div>
-          <h3 className="product-page__subtitle">Доступные размеры:</h3>
-          <ul className="product-page__sizes">
-            {sizes.map((size) => {
-              const isAvailable = isSizeAvailable(size.id);
-              return (
-                <li key={size.id} className="product-page__size-item">
-                  <button
-                    className="product-page__size-button"
-                    disabled={!isAvailable}
-                  >{`${size.label} (${size.number})`}</button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <ul className="product-page__colors">
+          {product.colors.map((color, index) => (
+            <li
+              key={color.id}
+              className={`product-page__color-item ${
+                selectedColorIndex === index ? "selected" : ""
+              }`}
+              onClick={() => handleColorChange(index)}
+            >
+              <button className="product-page__color-button">
+                {color.name}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="product-page__subtitle">Доступные размеры:</h3>
+
+        <ul className="product-page__sizes">
+          {sizes.map((size) => {
+            const isAvailable = isSizeAvailable(size.id);
+            return (
+              <li key={size.id} className="product-page__size-item">
+                <button
+                  className="product-page__size-button"
+                  disabled={!isAvailable}
+                >{`${size.label} (${size.number})`}</button>
+              </li>
+            );
+          })}
+        </ul>
 
         <p className="product-page__price">Цена: {selectedColor.price}р.</p>
       </div>

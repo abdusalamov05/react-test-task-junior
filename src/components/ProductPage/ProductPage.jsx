@@ -9,6 +9,7 @@ export function ProductPage() {
   const [sizes, setSizes] = useState([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
+  const [selectedSizeId, setSelectedSizeId] = useState(null);
 
   useEffect(() => {
     getProduct(id).then((data) => {
@@ -33,6 +34,11 @@ export function ProductPage() {
   const handleColorChange = (index) => {
     setSelectedColorIndex(index);
     setSelectedImageIndex(0);
+    setSelectedSizeId(null);
+  };
+
+  const handleSizeChange = (sizeId) => {
+    setSelectedSizeId(sizeId);
   };
 
   const isSizeAvailable = (sizeId) => {
@@ -95,12 +101,19 @@ export function ProductPage() {
         <ul className="product-page__sizes">
           {sizes.map((size) => {
             const isAvailable = isSizeAvailable(size.id);
+            const isSelected = selectedSizeId === size.id;
+
             return (
               <li key={size.id} className="product-page__size-item">
                 <button
-                  className="product-page__size-button"
+                  className={`product-page__size-button ${
+                    isSelected ? "selected" : ""
+                  }`}
+                  onClick={() => isAvailable && handleSizeChange(size.id)}
                   disabled={!isAvailable}
-                >{`${size.label} (${size.number})`}</button>
+                >
+                  {size.label} ({size.number})
+                </button>
               </li>
             );
           })}

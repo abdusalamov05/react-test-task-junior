@@ -17,13 +17,15 @@
 }
 
 .product-page__thumbnail-item.selected,
-.product-page__color-item.selected {
-  border: 1.5px solid #04306a;
+.product-page__color-item.selected,
+.product-page__size-button.selected {
+  border: 2px solid pink;
 }
 
 .product-page__color-button,
 .product-page__size-button {
-  padding: 4px 8px;
+  padding: 2px 4px;
+  cursor: pointer;
 }
 
 .product-page__thumbnail-image {

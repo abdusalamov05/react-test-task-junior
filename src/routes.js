@@ -4,10 +4,10 @@ import { ProductList, ProductPage } from "./components";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <ProductList />,
+    Component: ProductList,
   },
   {
     path: "/product/:id",
-    element: <ProductPage />,
+    element: ProductPage,
   },
 ]);
